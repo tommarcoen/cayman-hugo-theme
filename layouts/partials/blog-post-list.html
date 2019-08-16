@@ -1,6 +1,6 @@
 <h1>{{ .Title }}</h1>
 <ul>
-{{ range where .Pages.ByPublishDate.Reverse "Section" "post" }}
+{{ range where site.RegularPages "Type" "in" site.Params.mainSections }}
   <li>
     {{ $dateFormat := $.Site.Params.dateFormat | default "Jan 2, 2006" }}
     {{ .PublishDate.Format $dateFormat }}
