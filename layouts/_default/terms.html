@@ -1,18 +1,13 @@
 {{ define "main" }}
   <h1>{{ .Title }}</h1>
   <ul>
-    {{ $type := .Type }}
-    {{ range $key, $value := .Data.Terms.ByCount }}
-      {{ $name := .Name }}
-      {{ $count := .Count }}
-      {{ with $.Site.GetPage (printf "/%s/%s" $type $name) }}
+    {{ range .Data.Terms.Alphabetical }}
       <li>
-        {{ printf "(%d)" $count }}
-        <a href="{{ .Permalink }}">
-          {{ $name }}
+        {{ printf "(%d)" .Count }}
+        <a href="{{ .Page.RelPermalink }}">
+          {{ .Page.Title }}
         </a>
       </li>
-      {{ end }}
     {{ end }}
   </ul>
 {{ end }}
